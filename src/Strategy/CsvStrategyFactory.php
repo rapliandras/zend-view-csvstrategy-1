@@ -26,7 +26,7 @@ class CsvStrategyFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName,
             array $options = null)
     {
-        $renderer = new CsvRenderer();
+        $renderer = $container->get(CsvRenderer::class);
 
         $config = $container->get('config');
         $templateMap = (isset($config['view_manager']) && isset($config['view_manager']['template_map'])) ? $config['view_manager']['template_map'] : [];

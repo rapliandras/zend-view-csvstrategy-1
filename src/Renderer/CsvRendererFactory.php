@@ -4,10 +4,11 @@
 namespace LegoW\View\Renderer;
 
 
-use Psr\Container\ContainerInterface;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\View\Renderer\PhpRenderer;
 
-class CsvRendererFactory
+class CsvRendererFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
