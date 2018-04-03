@@ -78,4 +78,9 @@ class CsvRenderer implements RendererInterface, TreeRendererInterface
     {
         return $this->genericPhpRenderer->setHelperPluginManager($helperManager);
     }
+
+    public function resolver($name = null)
+    {
+        return $this->genericPhpRenderer->resolver($name);
+    }
 }
