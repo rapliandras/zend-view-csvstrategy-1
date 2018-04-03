@@ -83,4 +83,28 @@ class CsvRenderer implements RendererInterface, TreeRendererInterface
     {
         return $this->genericPhpRenderer->resolver($name);
     }
+
+    /**
+     * Overloading: proxy to helpers
+     *
+     * Proxies to the attached plugin manager to retrieve, return, and potentially
+     * execute helpers.
+     *
+     * * If the helper does not define __invoke, it will be returned
+     * * If the helper does define __invoke, it will be called as a functor
+     *
+     * @param  string $method
+     * @param  array $argv
+     * @return mixed
+     */
+    public function __call($method, $argv)
+    {
+        $plugin = $this->genericPhpRenderer->plugin($method);
+
+        if (is_callable($plugin)) {
+            return call_user_func_array($plugin, $argv);
+        }
+
+        return $plugin;
+    }
 }
