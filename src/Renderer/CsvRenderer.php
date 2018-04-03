@@ -11,6 +11,7 @@ namespace LegoW\View\Renderer;
 
 use \Zend\View\Renderer\PhpRenderer;
 use Zend\View\Renderer\RendererInterface;
+use Zend\View\Renderer\TreeRendererInterface;
 use Zend\View\Resolver\ResolverInterface;
 
 /**
@@ -18,7 +19,7 @@ use Zend\View\Resolver\ResolverInterface;
  *
  * @author Turcsán Ádám <turcsan.adam@legow.hu>
  */
-class CsvRenderer implements RendererInterface
+class CsvRenderer implements RendererInterface, TreeRendererInterface
 {
     protected $genericPhpRenderer;
 
@@ -60,6 +61,16 @@ class CsvRenderer implements RendererInterface
      */
     public function setResolver(ResolverInterface $resolver)
     {
-        return $this->setResolver($resolver);
+        return $this->genericPhpRenderer->setResolver($resolver);
+    }
+
+    /**
+     * Indicate whether the renderer is capable of rendering trees of view models
+     *
+     * @return bool
+     */
+    public function canRenderTrees()
+    {
+        return $this->genericPhpRenderer->canRenderTrees();
     }
 }
