@@ -15,9 +15,9 @@ class CsvRendererFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $renderer = $container->get(PhpRenderer::class);
 
         $config = $container->get('config');
+        $renderer = new PhpRenderer($config);
         $templateMap = (isset($config['view_manager']) && isset($config['view_manager']['template_map'])) ? $config['view_manager']['template_map'] : [];
 
         $resolver = new TemplateMapResolver($templateMap);
