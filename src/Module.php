@@ -20,6 +20,12 @@ class Module implements ConfigProviderInterface
                     CsvRenderer::class => CsvRendererFactory::class
                 ],
             ],
+
+            'view_manager' => [
+                'strategies' => [
+                    CsvStrategy::class
+                ]
+            ]
         ];
     }
 }
