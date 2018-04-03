@@ -2,7 +2,7 @@
 
 /*
  * LegoW\Zend-View-CsvStrategy (https://github.com/adamturcsan/zend-view-csvstrategy)
- * 
+ *
  * @copyright Copyright (c) 2014-2016 Legow Hosting Kft. (http://www.legow.hu)
  * @license https://opensource.org/licenses/MIT MIT License
  */
@@ -15,6 +15,7 @@ use Zend\View\Model;
 use Zend\View\ViewEvent;
 use LegoW\View\Renderer\CsvRenderer;
 use LegoW\View\Model\CsvModel;
+use Zend\View\Renderer\RendererInterface;
 
 /**
  * Description of CsvStrategy
@@ -23,31 +24,27 @@ use LegoW\View\Model\CsvModel;
  */
 class CsvStrategy extends AbstractListenerAggregate
 {
-
     protected $charset = 'UTF-16LE';
 
-    /**
-     *
-     * @var \Zend\View\Renderer\RendererInterface
-     */
     protected $renderer = null;
 
-    /**
-     * Constructor
-     *
-     * @param  JsonRenderer $renderer
-     */
-    public function __construct(CsvRenderer $renderer)
+    public function __construct(RendererInterface $renderer)
     {
         $this->renderer = $renderer;
     }
 
     public function attach(EventManagerInterface $events, $priority = 1)
     {
-        $this->listeners[] = $events->attach(ViewEvent::EVENT_RENDERER,
-                [$this, 'selectRenderer'], $priority);
-        $this->listeners[] = $events->attach(ViewEvent::EVENT_RESPONSE,
-                [$this, 'injectResponse'], $priority);
+        $this->listeners[] = $events->attach(
+            ViewEvent::EVENT_RENDERER,
+                [$this, 'selectRenderer'],
+            $priority
+        );
+        $this->listeners[] = $events->attach(
+            ViewEvent::EVENT_RESPONSE,
+                [$this, 'injectResponse'],
+            $priority
+        );
     }
 
     /**
@@ -104,5 +101,4 @@ class CsvStrategy extends AbstractListenerAggregate
             $headers->addHeaderLine('Content-Disposition: inline; filename="' . $model->getFileName() . '"');
         }
     }
-
 }
