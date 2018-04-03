@@ -1,5 +1,5 @@
 {
-    "name": "legow/zend-view-csvstrategy",
+    "name": "rapliandras/zend-view-csvstrategy",
     "description": "CSV View strategy for the zend-view lib",
     "type": "library",
     "require": {
