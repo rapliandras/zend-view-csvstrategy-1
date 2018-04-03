@@ -3,10 +3,13 @@
 
 namespace LegoW\View\Renderer;
 
-
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\View\Renderer\PhpRenderer;
+
+use LegoW\View\Renderer\CsvRenderer;
+use LegoW\View\Strategy\CsvStrategy;
+use Zend\View\Resolver\TemplateMapResolver;
 
 class CsvRendererFactory implements FactoryInterface
 {
